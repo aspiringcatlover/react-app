@@ -7,16 +7,24 @@ import requestNASFileList from './routes/ApiCaller';
 
 const IncidentVideoResult = (props) => {
     const [axiosResult, setAxiosResult] = useState([]);
+    const [mounted, setMount] = useState(false);
 
     useEffect(() => {
-        setAxiosResult(requestNASFileList(props.device_id));
+        //setAxiosResult(requestNASFileList(props.device_id));
+        let mockup_result = [{"id" : 34, "file_id": 34, "file_name": "2021212121.mp4"},
+        {"id" : 35, "file_id": 35, "file_name": "2021212122.mp4"}
+    ];
+        setAxiosResult(mockup_result);
+        setMount(true);
+        
+
 
     }, [props.device_id]) //re-render only when device id changes
 
 
 
     console.log(axiosResult, "axiosResult");
-    if (axiosResult === undefined ) {
+    if (!mounted) {
         console.log("still waiting results from axios");
         return <>Still loading...</>
     }
@@ -39,24 +47,20 @@ const IncidentVideoResult = (props) => {
             },
         ];
         return (
-
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: 350, width: '100%' }}>
+         
                 <DataGrid
                     rows={axiosResult}
                     columns={columns}
                     pageSize={5}
                     checkboxSelection
                 />
-
             </div>
 
         )
     }
 }
 
-const MyFirstComponent = (props) => {
-    return <>hello, {props.name}</>;
-}
 
 
-export { MyFirstComponent, IncidentVideoResult, };
+export default IncidentVideoResult;
