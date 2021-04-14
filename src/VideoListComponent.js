@@ -1,43 +1,60 @@
 //contains component for displaying a list of results queried from nodejs server
 
-import React, {useState,useEffect} from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { DataGrid } from '@material-ui/data-grid';
+import requestNASFileList from '../routes/ApiCaller';
+
+
+const IncidentVideoResult = (props) => {
+    const [axiosResult, setAxiosResult] = useState([]);
+
+    useEffect(() => {
+        setAxiosResult = requestNASFileList(props.device_id);
+
+    }, [props.device_id]) //re-render only when device id changes
+
+    //return a data table to be rendered
+    const columns = [
+        {
+            headerName: 'File ID',
+            field: 'file_id',
+            width: 70
+        },
+        {
+            headerName: 'File Name',
+            field: 'file_name',
+            width: 130
+        },
+    ];
 
 
 
+    console.log(axiosResult, "axiosResult");
+    if (axiosResult.length === 0) {
+        console.log("still waiting results from axios");
+        return <>Still loading...</>
+    }
+    else {
+        console.log("axios results ready");
+        return (
 
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid
+                    rows={axiosResult}
+                    columns={columns}
+                    pageSize={5}
+                    checkboxSelection
+                />
+
+            </div>
+
+        )
+    }
+}
 
 const MyFirstComponent = (props) => {
     return <>hello, {props.name}</>;
 }
 
-const IncidentVideoResult = (props) => {
-    const [axiosResult, setAxiosResult] = useState([]);
-    
-    useEffect( () =>{
-        const fetchData = async () => {
-            const response = await axios.get("http://127.0.0.1:3001/nas-info?device_id="+props.device_id);
-            let fileList = response.data.list;
-    
-            //process response so that react can render it
-            let fileListToRender = fileList.map((item,index) =>{
-                return (
-                <React.Fragment key={item.file_id}>
-                    <li>
-                        <span>File ID: {item.file_id} </span>
-                        <span>File Name: {item.file_name} </span>
-                    </li>
-                </React.Fragment>
-                )
-            })
-            console.log(fileListToRender);
 
-            setAxiosResult(fileListToRender); 
-        }
-        fetchData();        
-    },[props.device_id])
-    
-    return <>{axiosResult}</>
-}
-
-export {MyFirstComponent, IncidentVideoResult};
+export { MyFirstComponent, IncidentVideoResult, };
