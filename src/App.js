@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { MyFirstComponent, IncidentVideoResult } from './VideoListComponent';
 
 function App() {
   return (
@@ -8,6 +9,13 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hello World
+        </p>
+        <p>
+          <MyFirstComponent name = "Hao Jie"></MyFirstComponent>
+        </p>
+        <p>
+          <IncidentVideoResult device_id = "CctvCam1"></IncidentVideoResult>
+
         </p>
         <a
           className="App-link"
