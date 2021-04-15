@@ -5,31 +5,23 @@ import { DataGrid } from '@material-ui/data-grid';
 import requestNASFileList from './routes/ApiCaller';
 
 
+
 const IncidentVideoResult = (props) => {
     const [axiosResult, setAxiosResult] = useState([]);
-    const [mounted, setMount] = useState(false);
 
     useEffect(() => {
-        //setAxiosResult(requestNASFileList(props.device_id));
-        let mockup_result = [{"id" : 34, "file_id": 34, "file_name": "2021212121.mp4"},
-        {"id" : 35, "file_id": 35, "file_name": "2021212122.mp4"}
-    ];
-        setAxiosResult(mockup_result);
-        setMount(true);
-        
-
-
+        requestNASFileList(props.device_id).then((result)=>{
+            setAxiosResult(result);
+        })
     }, [props.device_id]) //re-render only when device id changes
 
-
-
-    console.log(axiosResult, "axiosResult");
-    if (!mounted) {
+    if (axiosResult === undefined || axiosResult.length <= 0) {
         console.log("still waiting results from axios");
         return <>Still loading...</>
     }
     else {
-        console.log("axios results ready");
+        console.log("axios result is ready",axiosResult);
+
 
         //return a data table to be rendered
 

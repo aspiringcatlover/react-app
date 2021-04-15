@@ -7,7 +7,7 @@ function App() {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col  xs="auto">
           <IncidentVideoResult device_id="CctvCam1"></IncidentVideoResult>
         </Col>
 
