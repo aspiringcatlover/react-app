@@ -14,4 +14,19 @@ let requestNASFileList = async (device_id) => {
             return result;
         
 }
-export default requestNASFileList;
+let requestDeviceIDList = async () =>{
+    let response =  await axios.get("http://127.0.0.1:3001/device-list");
+
+    //drop results with duplicated device id
+    const seen = new Set();
+    const filteredArr = (response.data).filter(el => {
+        const duplicate = seen.has(el.device_id);
+        seen.add(el.device_id);
+        return !duplicate;
+    })
+    return filteredArr;
+}
+
+
+export {requestNASFileList, requestDeviceIDList} ;
+

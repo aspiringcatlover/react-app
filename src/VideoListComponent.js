@@ -1,11 +1,11 @@
-//contains component for displaying a list of results queried from nodejs server
+//contains component for a datatable showing list of videos for a cctv
 import React, { useState, useEffect } from "react";
 import { DataGrid } from '@material-ui/data-grid';
-import requestNASFileList from './routes/ApiCaller';
+import {requestNASFileList}from './routes/ApiCaller';
 
 
 
-const IncidentVideoResult = (props) => {
+const IncidentVideoTable = (props) => {
     const [axiosResult, setAxiosResult] = useState([]);
 
     useEffect(() => {
@@ -20,8 +20,6 @@ const IncidentVideoResult = (props) => {
     }
     else {
         console.log("axios result is ready",axiosResult);
-
-
         //return a data table to be rendered
 
         //columns for data table
@@ -54,4 +52,4 @@ const IncidentVideoResult = (props) => {
 
 
 
-export default IncidentVideoResult;
+export default IncidentVideoTable;

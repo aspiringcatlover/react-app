@@ -1,24 +1,31 @@
 import React from 'react';
-import IncidentVideoResult from './VideoListComponent';
+import IncidentVideoTable from './VideoListComponent';
+import DeviceDropdown from './DeviceDropdownComponent';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container'
 
 
 
 function App() {
   return (
-    <Grid Container maxWidth="md"  spacing={300} alignContent="center">
+    <Container maxWidth = "lg" >
       <Grid item xs={6}>
         <h1>NAS</h1>
       </Grid>
-      <grid item xs={6} maxWidth = {10}>
+      <Grid item xs={6}>
+        <DeviceDropdown></DeviceDropdown>
+        
+      </Grid>
+
+      <Grid item xs={12}>
         <Paper elevation={3}>
-          <IncidentVideoResult device_id="CctvCam1"></IncidentVideoResult>
+          <IncidentVideoTable device_id="CctvCam1"></IncidentVideoTable>
         </Paper>
 
 
-      </grid>
-    </Grid>
+      </Grid>
+    </Container>
   );
 }
 
