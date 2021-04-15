@@ -1,19 +1,24 @@
 import React from 'react';
 import IncidentVideoResult from './VideoListComponent';
-import { Container, Row, Col } from 'reactstrap';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 
 
 function App() {
   return (
-    <Container>
-      <Row>
-        <Col  xs="auto">
+    <Grid Container maxWidth="md"  spacing={300} alignContent="center">
+      <Grid item xs={6}>
+        <h1>NAS</h1>
+      </Grid>
+      <grid item xs={6} maxWidth = {10}>
+        <Paper elevation={3}>
           <IncidentVideoResult device_id="CctvCam1"></IncidentVideoResult>
-        </Col>
+        </Paper>
 
-      </Row>
 
-    </Container>
+      </grid>
+    </Grid>
   );
 }
 

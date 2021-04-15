@@ -1,5 +1,4 @@
 //contains component for displaying a list of results queried from nodejs server
-
 import React, { useState, useEffect } from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import requestNASFileList from './routes/ApiCaller';
@@ -17,7 +16,7 @@ const IncidentVideoResult = (props) => {
 
     if (axiosResult === undefined || axiosResult.length <= 0) {
         console.log("still waiting results from axios");
-        return <>Still loading...</>
+        return <>Loading data from api...</>
     }
     else {
         console.log("axios result is ready",axiosResult);
@@ -30,16 +29,16 @@ const IncidentVideoResult = (props) => {
             {
                 headerName: 'File ID',
                 field: 'file_id',
-                width: 70
+                width: 100
             },
             {
                 headerName: 'File Name',
                 field: 'file_name',
-                width: 130
+                width: 300
             },
         ];
         return (
-            <div style={{ height: 350, width: '100%' }}>
+            <div style={{ height: 400, width: '100%' }}>
          
                 <DataGrid
                     rows={axiosResult}
