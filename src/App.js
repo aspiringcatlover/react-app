@@ -10,14 +10,14 @@ import Container from '@material-ui/core/Container'
 function App() {
   return (
     <Container maxWidth = "lg" >
-      <Grid item xs={6}>
+      <Grid item md={6} alignContent="center">
         <h1>NAS</h1>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12}>
         <DeviceDropdown></DeviceDropdown>
-        
       </Grid>
 
+      {/** 
       <Grid item xs={12}>
         <Paper elevation={3}>
           <IncidentVideoTable device_id="CctvCam1"></IncidentVideoTable>
@@ -25,6 +25,7 @@ function App() {
 
 
       </Grid>
+      */}
     </Container>
   );
 }

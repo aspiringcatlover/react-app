@@ -1,11 +1,17 @@
 //contains component for creating a dropdown box for CCTV devices
 import React, { useState, useEffect } from "react";
 import { requestDeviceIDList } from './routes/ApiCaller';
+import IncidentVideoTable from './VideoListComponent';
+
+import Grid from '@material-ui/core/Grid'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Container from '@material-ui/core/Container'
+import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
+
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -31,18 +37,21 @@ const DeviceDropdown = () => {
 
     const handleChange = (event) => {
         setDeviceIDSelected(event.target.value);
+
     };
     const classes = useStyles();
 
 
     if (deviceIDList === undefined || deviceIDList.length <= 0) {
         console.log("still waiting results from axios");
-        return <>Loading data from api...</>
+        return null
     }
     else {
         console.log("DeviceDropdownComponent result ready to be rendered:", deviceIDList);
         return (
-            <div style={{ height: 100, width: '100%' }}>
+            <Container>
+            
+                <Grid item xs={6}>
                 <FormControl className={classes.formControl}>
                     <InputLabel id="demo-simple-select-label" >CCTV ID</InputLabel>
                     <Select
@@ -57,8 +66,15 @@ const DeviceDropdown = () => {
                         })}
                     </Select>
                 </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                    <IncidentVideoTable device_id = {deviceIDSelected}>
+                    </IncidentVideoTable>
 
-            </div>
+                </Grid>
+                </Container>
+             
+        
         )
     }
 }

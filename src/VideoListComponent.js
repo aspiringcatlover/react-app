@@ -16,7 +16,7 @@ const IncidentVideoTable = (props) => {
 
     if (axiosResult === undefined || axiosResult.length <= 0) {
         console.log("still waiting results from axios");
-        return <>Loading data from api...</>
+        return null
     }
     else {
         console.log("axios result is ready",axiosResult);
