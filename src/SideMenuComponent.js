@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,7 @@ const SideMenu = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
+ 
   return (
     <div>
       <AppBar position="fixed" className={classes.appBar}>
@@ -66,7 +68,7 @@ const SideMenu = (props) => {
         <Divider />
         <List>
           {['NAS'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button onClick={()=>{alert("NAS")}} key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -75,7 +77,7 @@ const SideMenu = (props) => {
         <Divider />
         <List>
           {['Devices','Live Feed'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button onClick={()=>{alert(text)}} key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

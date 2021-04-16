@@ -73,9 +73,8 @@ const DeviceDropdown = () => {
                     <IncidentVideoTable device_id = {deviceIDSelected}>
                     </IncidentVideoTable>
                     </Paper>
-
-        
                 </Grid>
+                
                 </Container>
              
         
