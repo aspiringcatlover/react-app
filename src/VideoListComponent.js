@@ -16,7 +16,7 @@ const IncidentVideoTable = (props) => {
 
     if (axiosResult === undefined || axiosResult.length <= 0) {
         console.log("still waiting results from axios");
-        return null
+        return null;
     }
     else {
         console.log("axios result is ready",axiosResult);
@@ -30,10 +30,17 @@ const IncidentVideoTable = (props) => {
                 width: 100
             },
             {
+                headerName: 'Incident Type',
+                field: 'incidence_type',
+                width: 200
+            },
+            {
                 headerName: 'File Name',
                 field: 'file_name',
                 width: 300
             },
+         
+
         ];
         return (
             <div style={{ height: 400, width: '100%' }}>
@@ -41,8 +48,8 @@ const IncidentVideoTable = (props) => {
                 <DataGrid
                     rows={axiosResult}
                     columns={columns}
-                    pageSize={5}
-                    checkboxSelection
+                    pageSize={10}
+                    autoPageSize
                 />
             </div>
 

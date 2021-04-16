@@ -4,6 +4,7 @@ import { requestDeviceIDList } from './routes/ApiCaller';
 import IncidentVideoTable from './VideoListComponent';
 
 import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Container from '@material-ui/core/Container'
@@ -44,7 +45,7 @@ const DeviceDropdown = () => {
 
     if (deviceIDList === undefined || deviceIDList.length <= 0) {
         console.log("still waiting results from axios");
-        return null
+        return <>Loading...</>
     }
     else {
         console.log("DeviceDropdownComponent result ready to be rendered:", deviceIDList);
@@ -67,10 +68,13 @@ const DeviceDropdown = () => {
                     </Select>
                 </FormControl>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item md={10}>
+                    <Paper elevation = {3}>
                     <IncidentVideoTable device_id = {deviceIDSelected}>
                     </IncidentVideoTable>
+                    </Paper>
 
+        
                 </Grid>
                 </Container>
              

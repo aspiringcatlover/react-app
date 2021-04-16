@@ -27,6 +27,9 @@ let requestDeviceIDList = async () =>{
     return filteredArr;
 }
 
+let requestFileMetadata = async () => {
+    
+}
 
 export {requestNASFileList, requestDeviceIDList} ;
 
